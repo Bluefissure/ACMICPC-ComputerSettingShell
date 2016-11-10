@@ -114,7 +114,7 @@ Type=Application
 Terminal=false
 Exec=/usr/bin/eclipse
 Name=Eclipse
-Icon=eclipse
+Icon=/usr/lib/eclipse/icon.xpm
 EOF
 	chmod 777 $DesktopPATH/eclipse.desktop
 	
@@ -124,8 +124,13 @@ EOF
 
 function install_Codeblocks(){
 	echo "Installing Codeblocks......"
-	apt-get -y install codeblocks
 	
+	apt-get -y install python-software-properties 
+	apt-get -y install software-properties-common 
+	add-apt-repository -y ppa:damien-moore/codeblocks-stable
+	apt-get update
+	apt-get -y install codeblocks codeblocks-contrib
+
 	cat > $DesktopPATH/codeblocks.desktop<<-EOF
 [Desktop Entry]
 Version=1.0
